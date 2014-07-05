@@ -1,35 +1,48 @@
-      			#define	F_CPU	8000000UL 
-			#include <avr/io.h>				
-			#include <inttypes.h>			
-			#include <avr/interrupt.h>	
-			#include <avr/pgmspace.h>		
-			#include <stdlib.h>				
-			#include <avr/sfr_defs.h>		
-			#include <util/delay_basic.h>	
-			#include <util/delay.h>		
+      			#define	F_CPU	8000000UL //Definicja  czestotliwości pracy UC
+      		//--------------------------------------//
+		//------ BIBLIOTEKI STANDARDOWE --------//
+		//--------------------------------------//
 
+			#include <avr/io.h>				// zawiera definicje WE/WY uK.(np.drukujace)
+			#include <inttypes.h>				// zdeklarowane typy zmiennych
+			#include <avr/interrupt.h>			// zdeklarowane nazwy przerwan
+			#include <avr/pgmspace.h>			// informacje nt. danego mikrokontrolera (inf. o pamieci)
+			#include <stdlib.h>				// standardowa biblioteka
+			#include <avr/sfr_defs.h>			// definicje rejestrow specjalnych (porty,przetwroniki itd)
+			#include <util/delay_basic.h>			// opóŸnienia (gotowe)
+			#include <util/delay.h>				// opóŸnienia (gotowe)
 
 int main(void)
 {
 
 
-	DDRB = 0xFF;        
-	DDRA = 0x00;		
-	PORTA = 0x00;		
+	DDRB = 0xFF;        //cale B na wyjscie
+	DDRA = 0x00;		// A na wyjscie
+	PORTA = 0x00;		// pullup OFF	
+	//Ustawienie przetwornika adc
 	ADMUX = (1<<REFS0)|(1<<ADLAR);
+		// REFS0 - ustawienie napiecia na wartosc napiecia zasilania
+		// ADLAR - wlaczenie wyrownania do lewej
+		// ostatnie 5 bitow (tu 00000) ustawienie ADC.N (tu ADC.0) (N - nr pinu)
 	ADCSRA = (1<<ADEN)|(1<<ADSC)|(1<<ADATE)|(1<<ADPS2)|(1<<ADPS1);
-	SFIOR = 0x00;
+		// ADEN - wlacza przetwornik
+		// ADSC - uruchamia pierwszy pomiar
+		// ADATE - wlacza trigger
+		// ADIF - flaga przerwania
+		// ADIE - odmaskowuje przerwanie
+		// ADPS2:0 - dzielnik czestotliwosci
+	SFIOR = 0x00;//Free run
 	
 	
-
+		//zmienne ośmiobitowe
 	uint8_t wynik_ADC;
 	uint8_t	linijka;
 
-	while(1)          
+	while(1)//pętla nieskończona          
 	{
 		
 
-		wynik_ADC = ADCH;
+		wynik_ADC = ADCH;//przypisanie zmiennej wyniku pomiaru
 		linijka = 0;
 		if( wynik_ADC < 32 ) linijka = 1;
 		if( wynik_ADC > 32) linijka = 2;
@@ -43,6 +56,6 @@ int main(void)
 		
 				
 
-		PORTB = linijka;
+		PORTB = linijka;//wystawienie zmiennej linijka na port B(binarnie)
 	}
 }
