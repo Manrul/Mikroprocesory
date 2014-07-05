@@ -9,8 +9,8 @@
 			#include <avr/pgmspace.h>			// informacje nt. danego mikrokontrolera (inf. o pamieci)
 			#include <stdlib.h>				// standardowa biblioteka
 			#include <avr/sfr_defs.h>			// definicje rejestrow specjalnych (porty,przetwroniki itd)
-			#include <util/delay_basic.h>			// opóŸnienia (gotowe)
-			#include <util/delay.h>				// opóŸnienia (gotowe)
+			#include <util/delay_basic.h>			// opóźnienia (gotowe)
+			#include <util/delay.h>				// opóźnienia (gotowe)
 
 int main(void)
 {
