@@ -26,7 +26,7 @@ else
 if(nibbleToWrite & 0x02)
 	LCD_DB5_PORT |= LCD_DB5;
 else
-	LCD_DB5_PORT  &= ~LCD_DB5;
+	LCD_DB5_PORT  &= ~LCD_DB5; 
 
 if(nibbleToWrite & 0x04)
 	LCD_DB6_PORT |= LCD_DB6;
