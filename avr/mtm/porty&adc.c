@@ -17,7 +17,7 @@ int main(void)
 
 
 	DDRB = 0xFF;        //cale B na wyjscie
-	DDRA = 0x00;		// A na wyjscie
+	DDRA = 0x00;		// A na wejście
 	PORTA = 0x00;		// pullup OFF	
 	//Ustawienie przetwornika adc
 	ADMUX = (1<<REFS0)|(1<<ADLAR);
