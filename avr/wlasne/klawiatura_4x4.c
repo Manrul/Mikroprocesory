@@ -25,7 +25,6 @@ Sposób podłczenia:
 void InicKlaw (void)
 {
 	DDR_pod = 	0b11110000; //Wiersze jako wyjœcia (starsze 4 bity), kolumny jako wejœcia (m³odsze 4 bity).
-	PORT_pod =	0b11101111; //Podciąganie dla wejścia i początkowe ustawienie wyjść.
 }
  
 char SprawdzKlaw (void)
