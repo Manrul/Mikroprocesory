@@ -32,15 +32,16 @@ char SprawdzKlaw (void)
 {
 	char n = 0;
 	PORT_pod = 0b11101111;
-	do  
+	while(n<3) 
 	{
-		_delay_us(10);
+		asm volatile ("nop");
 		if (PIN_pod & 0b11111110) return (1+n*4);
 		if (PIN_pod & 0b11111101) return (2+n*4);
 		if (PIN_pod & 0b11111011) return (3+n*4);
 		if (PIN_pod & 0b11110111) return (4+n*4);
 		PORT_pod = (PORT_pod << 1)|0x01 ;
-	} while(n++ < 3); 
+		n++;
+	}  
 	return 255;
 } 
 	
