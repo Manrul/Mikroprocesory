@@ -25,7 +25,7 @@
 
 #define LCD_E_DIR		DDRC
 #define LCD_E_PORT		PORTC
-#define LCD_E			(1 << PC5)
+#define LCD_E			(1 << PC5) 
 
 #define LCD_DB4_DIR		DDRC
 #define LCD_DB4_PORT	PORTC
