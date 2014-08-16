@@ -5,7 +5,7 @@ EEMEM int a=100;//Zapisuje zmienną typu Int do eeprom
 				
 	//Funkcje służące do odczytu pamięci eeprom
 	//odczyt bloku pamięci
-	eeprom_read_block(void * miejsce przeznaczenia,const void *adres_w_eeprom,size_t liczba_bitów) ;
+	eeprom_read_block(void * miejsce przeznaczenia,const void *adres_w_eeprom,size_t liczba_bitów) ; 
 	eeprom_read_typ(const typ *adres)
 	
 	/* gdzie typ to jeden z:
