@@ -15,7 +15,7 @@ EEMEM int a=100;//Zapisuje zmienną typu Int do eeprom
 	float
 	np:*/
 	EEMEM int x=1234;
-	int a*eeprom_read_word(&x);
+	int a=eeprom_read_word(&x);
 	
 	
 	
