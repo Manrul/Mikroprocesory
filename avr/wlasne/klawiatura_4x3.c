@@ -8,7 +8,7 @@
 #define PIN_pod PIND
 
 //Inicjalizacja obsługi klawiatury.
-void InicKlaw (void)
+inline void InicKlaw (void)
 {
 	DDR_pod = 	0b00001111;
 	PORT_pod =	0b11111110; //Wiersze jako wyjœcia (młodsze 4 bity), kolumny jako wejœcia (starsze 4 bity).
