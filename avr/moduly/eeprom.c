@@ -12,7 +12,7 @@ EEMEM int a=100;//Zapisuje zmienną typu Int do eeprom
 	byte-1 bajt
 	word- 2 bajty
 	dword-typy long
-	float
+	lub float
 	np:*/
 	EEMEM int x=1234;
 	int a=eeprom_read_word(&x);
@@ -41,5 +41,5 @@ void eeprom_update_typ(typ *zmienna_w_eeprom,typ dane)
 void eeprom_update_block(const void *źródło,void * adres_w_eeprom,sizeof ilość)
 
 //Inne przydatne funckje
-eeprom_is_ready()//zwraca tru gdy eeprom nie jest zapisywana aktualniee
+eeprom_is_ready()//zwraca true(1) gdy eeprom nie jest zapisywana aktualniee
 eeprom_busy_wait()//zatrzymuje działanie programu na czas zapisu pamięci eeprom
