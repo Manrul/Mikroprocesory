@@ -10,7 +10,7 @@
 			#include <stdlib.h>				// standardowa biblioteka
 			#include <avr/sfr_defs.h>			// definicje rejestrow specjalnych (porty,przetwroniki itd)
 			#include <util/delay_basic.h>			// opóźnienia (gotowe)
-			#include <util/delay.h>				// opóźnienia (gotowe)
+			#include <util/delay.h>			 	// opóźnienia (gotowe)
 
 int main(void)
 {
