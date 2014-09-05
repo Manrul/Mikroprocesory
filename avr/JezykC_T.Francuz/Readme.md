@@ -1,5 +1,2 @@
-Programy zamieszczone w folderze,
-
-są zaczerpnięte z książki Tomasz Francuza,
-
+Programy z książki
  "Język C dla mikrokontrolerów od podstaw do zaawansowanych aplikacji"
