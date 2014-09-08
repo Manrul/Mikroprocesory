@@ -37,7 +37,7 @@
 
 #define LCD_DB6_DIR		DDRC
 #define LCD_DB6_PORT	PORTC
-#define LCD_DB6			(1 << PA2)
+#define LCD_DB6			(1 << PC2)
 
 #define LCD_DB7_DIR		DDRC
 #define LCD_DB7_PORT	PORTC
