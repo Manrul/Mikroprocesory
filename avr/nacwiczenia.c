@@ -71,7 +71,7 @@ void Licznik2(void)
 {
 	static char wynik=0;
 	char pom;
-	
+	KbScan2()=pom;
 	
 	if(wynik!=KbScan2())
 	{
@@ -87,7 +87,7 @@ void Licznik2(void)
 					PORTB=licznik;
 		}
 	}
-	else
+	else if(pom==1||pom==2)
 	{
 		_delay_ms(100);
 	
