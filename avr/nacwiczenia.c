@@ -1,13 +1,11 @@
-#include <avr/io.h>					//definicje rejestrow proc itd
-
-#define F_CPU 16000000UL			//czestotliwosc generatora kwarcowego
+#include <avr/io.h>				//definicje rejestrow proc itd
 #include <util/delay.h>				//opoznienia
-
-
+#define F_CPU 16000000UL			//czestotliwosc generatora kwarcowego
 
 #define KB_PORT PORTD
 #define KB_DIR DDRD
 #define KB_PIN PIND
+
 uint8_t licznik=0;
 
 
@@ -64,15 +62,33 @@ void Licznik(void)
 						licznik++;
 					wynik=pom;
 		}
+	    	KB_PORT=licznik;
 	}
-			PORTB=wynik;
+			
 }
-
+//ze zmianą klawisza lub co 100ms
 void Licznik2(void)
 {
 	static char wynik=0;
 	char pom;
-	if(wynik==KbScan2())
+	
+	
+	if(wynik!=KbScan2())
+	{
+			pom=KbScan2();
+			_delay_ms(1);
+				if(pom==KbScan2())
+		{
+					if(pom==1)
+						licznik--;
+					else if(pom==2)
+						licznik++;
+					wynik=pom;
+		}
+	    	PORTB=licznik;
+	}
+	else
+	{
 		_delay_ms(100);
 	
 		pom=KbScan2();
@@ -85,15 +101,18 @@ void Licznik2(void)
 			licznik++;
 			wynik=pom;
 		}
-	PORTB=wynik;
+	PORTB=licznik;
+	}
 }
 
 int main(void)
 {
 	DDRB=0xFF; 
+	PORTB=0x00;
 	while(1)
 	{
-		//liczba(zamien(KbScan2()));
+		Licznik();
+		//lub Licznik2();
 	}
 
 	return 0;
