@@ -59,6 +59,7 @@ void Licznik(void)
 		else if(pom==2)
 			licznik++;
 		PORTB=licznik;
+		wynik=pom;
 	}
 			
 }
@@ -69,22 +70,18 @@ void Licznik2(void)
 	char pom;
 	pom=KbScan2();
 	_delay_ms(1);
-	if(wynik!=KbScan2())
+	if(wynik!=KbScan2()&&KbScan2()==pom)
 	{
-			//pom=KbScan2();
-			wynik=pom;
-			_delay_ms(1);
-				if(pom==KbScan2())
-		{
-					if(pom==1)
-						licznik--;
-					else if(pom==2)
-						licznik++;
-					//wynik=pom;
-					PORTB=licznik;
-		}
+		
+		if(pom==1)
+			licznik--;
+		else if(pom==2)
+			licznik++;
+		PORTB=licznik;
+		wynik=pom;
+		
 	}
-	else if(pom==1||pom==2)
+	else if((pom==1||pom==2)&&KbScan2()==pom)
 	{
 		_delay_ms(100);
 	
@@ -96,8 +93,8 @@ void Licznik2(void)
 			licznik--;
 			else if(pom==2)
 			licznik++;
-			wynik=pom;
 			PORTB=licznik;
+			wynik=pom;
 	//	}
 	}
 }
