@@ -51,8 +51,8 @@ void Licznik(void)
 {
 	static char wynik=0;
 	char pom;
-	pom=KbScan2();
-	_delay_ms(1);
+		pom=KbScan2();
+		_delay_ms(1);
 	if(wynik!=KbScan2()&&KbScan2()==pom)
 	{
 		if(pom==1)
@@ -68,10 +68,10 @@ void Licznik2(void)
 {
 	static char wynik=0;
 	char pom;
-	pom=KbScan2();
-	_delay_ms(1);
+		pom=KbScan2();
+		_delay_ms(1);
 	if(KbScan2()==pom)
-	return;
+		return;
 	if(wynik!=KbScan2())
 	{
 		if(pom==1)
