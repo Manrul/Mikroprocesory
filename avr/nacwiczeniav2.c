@@ -81,9 +81,11 @@ void Licznik2(void)
 	}
 	//else if((pom==1||pom==2)&&KbScan2()==pom)
 	//else if(KbScan2()==pom)     
-	else if(pom==1||pom==2)	//skoror pom to któraś z tych wartość to nie ma drgań?
+	//else if(pom==1||pom==2)
+	else if(KbScan2()==pom)  //chyba najlepsza możliwość
 	{
 		_delay_ms(100);
+		pom=KbScan2();//? z tym czy bez?
 		if(pom==1)
 			licznik--;
 		else if(pom==2)
