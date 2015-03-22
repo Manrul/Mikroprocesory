@@ -73,30 +73,22 @@ void Licznik2(void)
 	_delay_ms(1);
 	if(wynik!=KbScan2()&&KbScan2()==pom)
 	{
-		
 		if(pom==1)
 			licznik--;
 		else if(pom==2)
 			licznik++;
 		PORTB=licznik;
 		wynik=pom;
-		
 	}
 	else if((pom==1||pom==2)&&KbScan2()==pom)
 	{
 		_delay_ms(100);
-	
-	//	pom=KbScan2();
-	//	_delay_ms(1);
-	//	if(pom==KbScan2())
-	//	{
-			if(pom==1)
+		if(pom==1)
 			licznik--;
-			else if(pom==2)
+		else if(pom==2)
 			licznik++;
-			PORTB=licznik;
-			wynik=pom;
-	//	}
+		PORTB=licznik;
+		wynik=pom;
 	}
 }
 
