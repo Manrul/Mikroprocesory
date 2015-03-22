@@ -62,7 +62,6 @@ void Licznik(void)
 		PORTB=licznik;
 		wynik=pom;
 	}
-			
 }
 //ze zmianą klawisza lub co 100ms
 void Licznik2(void)
