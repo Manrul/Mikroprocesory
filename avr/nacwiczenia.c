@@ -91,17 +91,17 @@ void Licznik2(void)
 	{
 		_delay_ms(100);
 	
-		pom=KbScan2();
-		_delay_ms(1);
-		if(pom==KbScan2())
-		{
+	//	pom=KbScan2();
+	//	_delay_ms(1);
+	//	if(pom==KbScan2())
+	//	{
 			if(pom==1)
 			licznik--;
 			else if(pom==2)
 			licznik++;
 			wynik=pom;
 			PORTB=licznik;
-		}
+	//	}
 	}
 }
 
