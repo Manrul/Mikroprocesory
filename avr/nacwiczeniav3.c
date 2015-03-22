@@ -53,9 +53,7 @@ void Licznik(void)
 	char pom;
 	pom=KbScan2();
 	_delay_ms(1);
-	if(KbScan2()!=pom)
-	return;
-	if(wynik!=KbScan2())
+	if(wynik!=KbScan2()&&KbScan2()==pom)
 	{
 		if(pom==1)
 			licznik--;
@@ -72,7 +70,9 @@ void Licznik2(void)
 	char pom;
 	pom=KbScan2();
 	_delay_ms(1);
-	if(wynik!=KbScan2()&&KbScan2()==pom)
+	if(KbScan2()==pom)
+	return;
+	if(wynik!=KbScan2())
 	{
 		if(pom==1)
 			licznik--;
@@ -83,9 +83,11 @@ void Licznik2(void)
 	}
 	//else if((pom==1||pom==2)&&KbScan2()==pom)
 	//else if(KbScan2()==pom)     
-	else if(pom==1||pom==2)	//skoror pom to któraś z tych wartość to nie ma drgań?
+	//else if(pom==1||pom==2)
+	else   //chyba najlepsza możliwość
 	{
 		_delay_ms(100);
+		pom=KbScan2();//? z tym czy bez?
 		if(pom==1)
 			licznik--;
 		else if(pom==2)
