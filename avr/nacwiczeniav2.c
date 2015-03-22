@@ -1,6 +1,7 @@
+#define F_CPU 16000000UL			//czestotliwosc generatora kwarcowego
 #include <avr/io.h>				//definicje rejestrow proc itd
 #include <util/delay.h>				//opoznienia
-#define F_CPU 16000000UL			//czestotliwosc generatora kwarcowego
+
 
 #define KB_PORT PORTD
 #define KB_DIR DDRD
