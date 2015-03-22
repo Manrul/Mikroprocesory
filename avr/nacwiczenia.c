@@ -62,7 +62,7 @@ void Licznik(void)
 						licznik++;
 					wynik=pom;
 		}
-	    	KB_PORT=licznik;
+	    	PORTB=licznik;
 	}
 			
 }
