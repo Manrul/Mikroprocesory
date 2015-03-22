@@ -61,8 +61,8 @@ void Licznik(void)
 					else if(pom==2)
 						licznik++;
 					wynik=pom;
+					PORTB=licznik;
 		}
-	    	PORTB=licznik;
 	}
 			
 }
@@ -84,8 +84,8 @@ void Licznik2(void)
 					else if(pom==2)
 						licznik++;
 					wynik=pom;
+					PORTB=licznik;
 		}
-	    	PORTB=licznik;
 	}
 	else
 	{
