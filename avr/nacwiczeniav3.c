@@ -70,7 +70,7 @@ void Licznik2(void)
 	char pom;
 		pom=KbScan2();
 		_delay_ms(1);
-	if(KbScan2()==pom)
+	if(KbScan2()!=pom)
 		return;
 	if(wynik!=KbScan2())
 	{
