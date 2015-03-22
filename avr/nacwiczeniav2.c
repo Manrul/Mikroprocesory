@@ -80,7 +80,9 @@ void Licznik2(void)
 		PORTB=licznik;
 		wynik=pom;
 	}
-	else if((pom==1||pom==2)&&KbScan2()==pom)
+	//else if((pom==1||pom==2)&&KbScan2()==pom)
+	//else if(KbScan2()==pom)     
+	else if(pom==1||pom==2)	//skoror pom to któraś z tych wartość to nie ma drgań?
 	{
 		_delay_ms(100);
 		if(pom==1)
