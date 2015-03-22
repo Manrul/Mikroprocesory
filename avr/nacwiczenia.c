@@ -53,6 +53,7 @@ void Licznik(void)
 	if(wynik!=KbScan2())
 	{
 			pom=KbScan2();
+			wynik=pom;
 			_delay_ms(1);
 				if(pom==KbScan2())
 		{
@@ -60,7 +61,7 @@ void Licznik(void)
 						licznik--;
 					else if(pom==2)
 						licznik++;
-					wynik=pom;
+					//wynik=pom;
 					PORTB=licznik;
 		}
 	}
@@ -76,6 +77,7 @@ void Licznik2(void)
 	if(wynik!=KbScan2())
 	{
 			//pom=KbScan2();
+			wynik=pom;
 			_delay_ms(1);
 				if(pom==KbScan2())
 		{
@@ -83,7 +85,7 @@ void Licznik2(void)
 						licznik--;
 					else if(pom==2)
 						licznik++;
-					wynik=pom;
+					//wynik=pom;
 					PORTB=licznik;
 		}
 	}
