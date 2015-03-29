@@ -1,5 +1,5 @@
 /*#define CMP_REGISTER (16000/256)		// 16000 kHz
-==FCPU*czas_miedzyprzerwaniami(tu 10^-3)/preskaler
+==FCPU*czas_miedzyprzerwaniami(tu 10^-3)/preskaler*/
 
 
 //---------------------------------------------------------------
