@@ -79,7 +79,8 @@ uint8_t klawisz()
 	if( (PINA & 0x01) ==0 ) return 1;
 	if( (PINA & 0x02) ==0 ) return 2;
 	if( (PINA & 0x04) ==0 ) mruganie();
-			return 0;
+	
+	return 0;
 }
 
 void Licznik(void)
@@ -109,11 +110,13 @@ void mruganie(void)
 {
 	uint8_t i;
 
-	for(i=0;i<licznik;i++){
+	for(i=0;i<licznik;i++)
+	{
 		PORTC|=0b00000001;
 		_delay_ms(500);
 		PORTC&=0b11111110;
-	_delay_ms(500);}
+	_delay_ms(500);
+	}
 }
 
 int plusiles(uint8_t pom)
