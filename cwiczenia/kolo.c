@@ -180,10 +180,7 @@ int main(void)
 {
 	
 	LedDisp_Init();
-/*	LedsStr[0]=2;
-	LedsStr[1]=0;
-	LedsStr[2]=1;
-	LedsStr[3]=7;*/
+
 	InitTimer0();
 	sei();	
 
@@ -200,9 +197,7 @@ int main(void)
 		i=0;
 		plusiles(pom);
 		}
-
-	
-		 
+	 
 	}
 
 
