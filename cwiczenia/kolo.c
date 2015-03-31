@@ -35,7 +35,6 @@ uint8_t Led_Update(void)
 	uint8_t tmp;
 	//aktualizacja portu C/A wyswietlacza 7-segmentowego
 	CATHODE_PORT =(CATHODE_PORT & 0xF0) | ~(1<<led_i);
-	
 	tmp=LedsStr[led_i++];
 	if(tmp>MAX_LED_CODES)
 	tmp=MAX_LED_CODES;
