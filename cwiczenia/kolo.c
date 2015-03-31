@@ -3,8 +3,8 @@
 #include <avr/interrupt.h>
 #define F_CPU 16000000UL
 #include <util/delay.h>
-#define CMP_REGISTER (16000/256)		// 16000 kHz
 
+#define CMP_REGISTER (16000/256)		// 16000 kHz
 #define SEGMENT_PORT	PORTD
 #define SEGMENT_DIR	DDRD
 #define CATHODE_PORT	PORTB
@@ -17,9 +17,6 @@ unsigned int ms_timer;
 uint8_t led_i=0;
 uint8_t licznik=5;
 uint8_t i=1;
-
-
-
 char LedCodeTab[MAX_LED_CODES+1]= {
 	/*'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',  ' '  */
 0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F, 0x6F, 0x00  };
