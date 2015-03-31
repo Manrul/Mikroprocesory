@@ -3,14 +3,12 @@
 #include <avr/interrupt.h>
 #define F_CPU 16000000UL
 #include <util/delay.h>
-#include <stdio.h>
 #define CMP_REGISTER (16000/256)		// 16000 kHz
 
 #define SEGMENT_PORT	PORTD
-#define SEGMENT_DIR	    DDRD
+#define SEGMENT_DIR	DDRD
 #define CATHODE_PORT	PORTB
-#define CATHODE_DIR		DDRB
-
+#define CATHODE_DIR	DDRB
 #define MAX_LED_CODES 	10
 #define MAX_LED_DIGITS	4
 
@@ -60,16 +58,12 @@ void InitTimer0(void)
 
 ISR(TIMER0_COMP_vect)
 {
-	
-	if(ms_timer ==5) {
-		
+	if(ms_timer==5)
+	{
 		Led_Update();
-		
 		ms_timer=0;
 	}
 	ms_timer++;
-	
-	
 }
 
 uint8_t klawisz()
@@ -115,7 +109,7 @@ void mruganie(void)
 		PORTC|=0b00000001;
 		_delay_ms(500);
 		PORTC&=0b11111110;
-	_delay_ms(500);
+		_delay_ms(500);
 	}
 }
 
@@ -130,9 +124,8 @@ int plusiles(uint8_t pom)
 		{
 			i=1;
 			licz=5;
-		    return 0;
+			    return 0;
 		}
-		
 	}
 	if(i==0)
 	{
@@ -146,26 +139,23 @@ int plusiles(uint8_t pom)
 		LedsStr[2]=(licznik%100)/10;
 		LedsStr[1]=(licznik%1000)/100;
 		LedsStr[0]=licznik/1000;
-		
 	}
 	return 0;
 }
 
 int main(void)
 {
+	DDRC|=0b00000001;
+	uint8_t pom;
 	
 	LedDisp_Init();
-
 	InitTimer0();
 	sei();
 
-	DDRC|=0b00000001;
-	
-	uint8_t pom;
 	while(1) {
 		pom=klawisz();
 			if(i)
-				Licznik();
+					Licznik();
 		_delay_ms(100);
 			if(pom==klawisz())
 				{
