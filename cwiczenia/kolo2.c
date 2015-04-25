@@ -23,10 +23,12 @@ uint8_t licznik=0;
 //deklaracje funkcji
 inline void InitTimer0(void);			//inicjalizajca timera0
 int lcd_put(char znak, FILE *s);		//znak, wskaznik do strumienia
-uint8_t KbScan(void);					 //funkcja skanująca klawiature 4x1, zwraca numer klawisza
+uint8_t KbScan(void);					//funkcja skanująca klawiature 4x1, zwraca numer klawisza
 uint8_t KbScan2(void);					//funkcja skanująca klawiature 4x4, zwraca numer klawisza
 void Licznik(void);						//funkcja filtrująca odczytane stany klawisza
 void Licznik2(void);					//funkcja filtrująca odczytane stany klawisza,inkrementacja co 100ms,(nie testowane)
+void lcd_cursor_on(void);				// sterowanie kursorem
+void lcd_cursor_off(void);				// sterowanie kursorem
 
 //definicja strumienia
 static FILE mystdout= FDEV_SETUP_STREAM(lcd_put, NULL,_FDEV_SETUP_WRITE);
@@ -53,7 +55,7 @@ int main(void)
 
 		return 0;
 }
-
+//obsługa przerwań
 ISR(TIMER0_COMP_vect)
 {
 	
@@ -66,7 +68,7 @@ ISR(TIMER0_COMP_vect)
 	
 	
 }
-
+//pozostałe funkcje
 void Licznik(void)
 {
 	static char wynik=0;
@@ -181,4 +183,15 @@ void Licznik2(void)
 		PORTB=licznik;
 		wynik=pom;
 	}
+}
+
+//Display ON/ OFF Control 0(rs) 0(rw) 0 0 0 0 1 D C B Set display(D), cursor(C), and blinking of cursor(B) on/off control bit.
+void lcd_cursor_off(void)
+{
+	lcd_wr_command(0x0C);
+}
+
+void lcd_cursor_on(void)
+{
+	lcd_wr_command(0x0E);
 }
