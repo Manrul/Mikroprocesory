@@ -1,4 +1,4 @@
-przerwania co 10 ms
+/przerwania co 10 ms
 //---------------------------------------------------------------
 // Przyklad programu obslugi i konfiguracji przerwań dla TIMER0
 // Kompilatora: GCC_AVR
