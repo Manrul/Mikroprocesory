@@ -106,15 +106,12 @@ inline void InitTimer0(void)
 int lcd_put(char znak, FILE *s)
 {
 	if (znak == '\r')
-	{
 		lcd_gotoxy(0, 0);
-	} else if (znak == '\n')
-	{
+	else if (znak == '\n')
 		lcd_gotoxy(0, 1);
-	} else
-	{
+	 else
 		lcd_putchar(znak);
-	}
+	
 	return 0;
 }
 
