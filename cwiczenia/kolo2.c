@@ -4,8 +4,8 @@
 #include "Lcd_Fun.h"
 
 //zmienna do przerwań((Fcpu/preskaler)*razy odstęp między przerwaniami w sek)
-#define CMP_REGISTER (16000/256)		// 16000 kHz(16000000*10^-3)/PRESKALER
-//#define CMP_REGISTER (160000/1024)		//16000000*(10*10^-3)
+#define CMP_REGISTER (16000/256)			//dla przerwań co 1ms,(16000000*10^-3)/PRESKALER,(bo 1ms=10^-3)
+//#define CMP_REGISTER (160000/1024)		//dla przerwań co 10 ms,16000000*(10*10^-3),(bo 10ms=10*10^-3)
 
 //do klawiatury 4x4
 #define KB_PORT PORTD
@@ -27,8 +27,8 @@ uint8_t KbScan(void);					//funkcja skanująca klawiature 4x1, zwraca numer klaw
 uint8_t KbScan2(void);					//funkcja skanująca klawiature 4x4, zwraca numer klawisza
 void Licznik(void);						//funkcja filtrująca odczytane stany klawisza
 void Licznik2(void);					//funkcja filtrująca odczytane stany klawisza,inkrementacja co 100ms,(nie testowane)
-void lcd_cursor_on(void);				// sterowanie kursorem
-void lcd_cursor_off(void);				// sterowanie kursorem
+void lcd_cursor_on(void);				// sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
+void lcd_cursor_off(void);				// sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
 
 //definicja strumienia
 static FILE mystdout= FDEV_SETUP_STREAM(lcd_put, NULL,_FDEV_SETUP_WRITE);
