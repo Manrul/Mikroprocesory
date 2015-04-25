@@ -39,7 +39,6 @@ int main(void)
 	lcd_init(); 
 	InitTimer0();
 	stdout = &mystdout;
-	
 	sei();
 
 		while(1)
@@ -73,16 +72,15 @@ void Licznik(void)
 	static char wynik=0;
 	char pom;
 	
-	
 	pom=KbScan();
 	_delay_ms(4);
+	
 	if(KbScan()==pom&&wynik!=KbScan())
 	{
 		if(pom==1&&licznik>MAX)
-		licznik--;
+			licznik--;
 		else if(pom==2&&licznik<MIN)
-		licznik++;
-		
+			licznik++;
 		wynik=pom;
 	}
 }
@@ -159,14 +157,15 @@ void Licznik2(void)
 	char pom;
 	pom=KbScan2();
 	_delay_ms(1);
+	
 	if(KbScan2()!=pom)
-	return;
+		return;
 	if(wynik!=KbScan2())
 	{
 		if(pom==1)
-		licznik--;
+			licznik--;
 		else if(pom==2)
-		licznik++;
+			licznik++;
 		PORTB=licznik;
 		wynik=pom;
 	}
@@ -177,10 +176,11 @@ void Licznik2(void)
 	{
 		_delay_ms(100);
 		pom=KbScan2();//? z tym czy bez?
+		
 		if(pom==1)
-		licznik--;
+			licznik--;
 		else if(pom==2)
-		licznik++;
+			licznik++;
 		PORTB=licznik;
 		wynik=pom;
 	}
