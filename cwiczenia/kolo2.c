@@ -3,22 +3,32 @@
 #include <stdio.h>
 #include "Lcd_Fun.h"
 
-#define CMP_REGISTER (16000/256)		// 16000 kHz
+//zmienna do przerwań((Fcpu/preskaler)*razy odstęp między przerwaniami w sek)
+#define CMP_REGISTER (16000/256)		// 16000 kHz(16000000*10^-3)/PRESKALER
+//#define CMP_REGISTER (160000/1024)		//16000000*(10*10^-3)
 
-
+//do klawiatury 4x4
+#define KB_PORT PORTD
+#define KB_DIR DDRD
+#define KB_PIN PIND
+//zakres wartości licznika
+#define MAX 20
+#define MIN 0
 
 
 //zmienne globalne
-unsigned int ms_timer;
+unsigned int ms_timer;					// Możliwa zmiana na volatile, gdy będzie potrzeba
 uint8_t licznik=0;
 
 //deklaracje funkcji
-inline void InitTimer0(void);
-uint8_t klawisz(void);
-void Licznik(void);
-int lcd_put(char znak, FILE *s);//znak, wskaznik do strumienia
+inline void InitTimer0(void);			//inicjalizajca timera0
+int lcd_put(char znak, FILE *s);		//znak, wskaznik do strumienia
+uint8_t KbScan(void);					 //funkcja skanująca klawiature 4x1, zwraca numer klawisza
+uint8_t KbScan2(void);					//funkcja skanująca klawiature 4x4, zwraca numer klawisza
+void Licznik(void);						//funkcja filtrująca odczytane stany klawisza
+void Licznik2(void);					//funkcja filtrująca odczytane stany klawisza,inkrementacja co 100ms,(nie testowane)
 
-
+//definicja strumienia
 static FILE mystdout= FDEV_SETUP_STREAM(lcd_put, NULL,_FDEV_SETUP_WRITE);
 
 int main(void)
@@ -26,7 +36,7 @@ int main(void)
 	
 	
 	_delay_ms(1000);
-	lcd_init(); //incicjalizacja wyswietlacza
+	lcd_init(); 
 	InitTimer0();
 	stdout = &mystdout;
 	
@@ -64,20 +74,20 @@ void Licznik(void)
 	char pom;
 	
 	
-	pom=klawisz();
+	pom=KbScan();
 	_delay_ms(4);
-	if(klawisz()==pom&&wynik!=klawisz())
+	if(KbScan()==pom&&wynik!=KbScan())
 	{
-		if(pom==1&&licznik>1)
+		if(pom==1&&licznik>MAX)
 		licznik--;
-		else if(pom==2&&licznik<20)
+		else if(pom==2&&licznik<MIN)
 		licznik++;
 		
 		wynik=pom;
 	}
 }
 
-uint8_t klawisz(void)
+uint8_t KbScan(void)
 {
 	DDRA=	0b00000000;
 	PORTA=	0b11111111;
@@ -90,8 +100,9 @@ uint8_t klawisz(void)
 inline void InitTimer0(void)
 {
 	OCR0=CMP_REGISTER;
-	TCCR0= (1<<WGM01 | 1<< CS02);
-	TIMSK=0x01 << OCIE0;
+	TCCR0= (1<<WGM01 | 1<< CS02);				//tryb zerowania po zrównaniu, prescaler=256
+	//TCCR0= (1<<WGM01 | 1<<CS02 | 1<<CS00);	 // prescaler=1024(JAK PRZERWANIA MIAŁY BYĆ CO 10MS)
+	TIMSK=0x01 << OCIE0;						//zezwolenie na przerwania
 }
 
 int lcd_put(char znak, FILE *s)
@@ -107,4 +118,70 @@ int lcd_put(char znak, FILE *s)
 		lcd_putchar(znak);
 	}
 	return 0;
+}
+
+uint8_t KbScan2(void)
+{
+	unsigned char skankod=0;
+	KB_DIR = 0xF0; // starsza czesc na wyjscie
+	KB_PORT = 0x0F; // tam gdzie sa wejscia wysylamy , i podwieszamy rezystor
+	_delay_us(2);
+
+	skankod = KB_PIN; // starsza odczytana czesc wrzucamy do skankodu (and 0x0F - wymuszenie by na mlodszej czesci byly 0)
+	KB_DIR = 0x0F;
+	KB_PORT = 0xF0;
+	_delay_us(2);
+
+	skankod = skankod | KB_PIN;
+	if(skankod == 0b11101110) return 1;
+	if(skankod == 0b11011110) return 2;
+	if(skankod == 0b10111110) return 3;
+	if(skankod == 0b01111110) return 4;
+	if(skankod == 0b11101101) return 5;
+	if(skankod == 0b11011101) return 6;
+	if(skankod == 0b10111101) return 7;
+	if(skankod == 0b01111101) return 8;
+	if(skankod == 0b11101011) return 9;
+	if(skankod == 0b11011011) return 10;
+	if(skankod == 0b10111011) return 11;
+	if(skankod == 0b01111011) return 12;
+	if(skankod == 0b11100111) return 13;
+	if(skankod == 0b11010111) return 14;
+	if(skankod == 0b10110111) return 15;
+	if(skankod == 0b01110111) return 16;
+	
+	return 255;
+}
+
+void Licznik2(void)
+{
+	static char wynik=0;
+	char pom;
+	pom=KbScan2();
+	_delay_ms(1);
+	if(KbScan2()!=pom)
+	return;
+	if(wynik!=KbScan2())
+	{
+		if(pom==1)
+		licznik--;
+		else if(pom==2)
+		licznik++;
+		PORTB=licznik;
+		wynik=pom;
+	}
+	//else if((pom==1||pom==2)&&KbScan2()==pom)
+	//else if(KbScan2()==pom)
+	//else if(pom==1||pom==2)
+	else   //chyba najlepsza możliwość
+	{
+		_delay_ms(100);
+		pom=KbScan2();//? z tym czy bez?
+		if(pom==1)
+		licznik--;
+		else if(pom==2)
+		licznik++;
+		PORTB=licznik;
+		wynik=pom;
+	}
 }
