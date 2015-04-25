@@ -19,7 +19,9 @@
 //zmienne globalne
 unsigned int ms_timer;					// Możliwa zmiana na volatile, gdy będzie potrzeba
 uint8_t licznik=0;
-
+//do zegarka
+uint8_t sek=0;
+uint8_t min=0;
 //deklaracje funkcji
 inline void InitTimer0(void);			//inicjalizajca timera0
 int lcd_put(char znak, FILE *s);		//znak, wskaznik do strumienia
@@ -29,7 +31,7 @@ void Licznik(void);						//funkcja filtrująca odczytane stany klawisza
 void Licznik2(void);					//funkcja filtrująca odczytane stany klawisza,inkrementacja co 100ms,(nie testowane)
 void lcd_cursor_on(void);				// sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
 void lcd_cursor_off(void);				// sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
-
+void time_update(void);					//funkcja wywoływana  w przerwaniu co sekunda,aktualizująca czas
 //definicja strumienia
 static FILE mystdout= FDEV_SETUP_STREAM(lcd_put, NULL,_FDEV_SETUP_WRITE);
 
@@ -194,4 +196,14 @@ void lcd_cursor_off(void)
 void lcd_cursor_on(void)
 {
 	lcd_wr_command(0x0E);
+}
+
+void time_update(void)
+{
+	sek++;			//lub++sek
+	if(sek==60)		//lub sek==59
+		{
+			min++;
+			sek=0;
+		}
 }
