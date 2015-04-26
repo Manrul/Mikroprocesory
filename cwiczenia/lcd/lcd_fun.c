@@ -143,9 +143,7 @@ void lcd_gotoxy(char col, char row)//ustawienie kursora
 {
 	char adres=0x00;
 	if (row  == 0)
-	{
 		adres=adres+col;
-	}
 	else
 		adres=adres+col+0x40; //2gi wiersz
 
