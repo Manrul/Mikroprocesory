@@ -29,8 +29,8 @@ uint8_t KbScan(void);					//funkcja skanująca klawiature 4x1, zwraca numer klaw
 uint8_t KbScan2(void);					//funkcja skanująca klawiature 4x4, zwraca numer klawisza
 void Licznik(void);						//funkcja filtrująca odczytane stany klawisza
 void Licznik2(void);					//funkcja filtrująca odczytane stany klawisza,inkrementacja co 100ms,(nie testowane)
-void lcd_cursor_on(void);				// sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
-void lcd_cursor_off(void);				// sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
+void lcd_cursor_on(void);				//sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
+void lcd_cursor_off(void);				//sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
 void time_update(void);					//funkcja wywoływana  w przerwaniu co sekunda,aktualizująca czas
 //definicja strumienia
 static FILE mystdout= FDEV_SETUP_STREAM(lcd_put, NULL,_FDEV_SETUP_WRITE);
@@ -81,9 +81,9 @@ void Licznik(void)
 	
 	if(KbScan()==pom&&wynik!=KbScan())
 	{
-		if(pom==1&&licznik>MAX)
+		if(pom==1&&licznik>MIN)
 			licznik--;
-		else if(pom==2&&licznik<MIN)
+		else if(pom==2&&licznik<MAX)
 			licznik++;
 		wynik=pom;
 	}
