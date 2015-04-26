@@ -57,7 +57,7 @@ int main(void)
 
 		return 0;
 }
-//obsługa przerwań
+//obsługa przerwań,w wersji z wywaływaniem time_update co 1000 przerwań(1000*1ms=1s)
 ISR(TIMER0_COMP_vect)
 {
 	
