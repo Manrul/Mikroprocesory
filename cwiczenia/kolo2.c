@@ -61,10 +61,9 @@ int main(void)
 ISR(TIMER0_COMP_vect)
 {
 	
-	if(ms_timer ==5) {
-		
-		
+	if(ms_timer == 1000) {
 		ms_timer=0;
+		time_update();
 	}
 	ms_timer++;
 	
