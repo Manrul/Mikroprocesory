@@ -4,7 +4,7 @@
 #include "Lcd_Fun.h"
 
 //zmienna do przerwań((Fcpu/preskaler)*razy odstęp między przerwaniami w sek)
-#define CMP_REGISTER (16000/256)			//dla przerwań co 1ms,(16000000*10^-3)/PRESKALER,(bo 1ms=10^-3)
+#define CMP_REGISTER (16000/256)		//dla przerwań co 1ms,(16000000*10^-3)/PRESKALER,(bo 1ms=10^-3)
 //#define CMP_REGISTER (160000/1024)		//dla przerwań co 10 ms,16000000*(10*10^-3),(bo 10ms=10*10^-3)
 
 //do klawiatury 4x4
@@ -23,11 +23,11 @@ uint8_t licznik=0;
 uint8_t sek=0;
 uint8_t min=0;
 //deklaracje funkcji
-inline void InitTimer0(void);			//inicjalizajca timera0
-int lcd_put(char znak, FILE *s);		//znak, wskaznik do strumienia
+	inline void InitTimer0(void);			//inicjalizajca timera0
+int lcd_put(char znak, FILE *s);			//znak, wskaznik do strumienia
 uint8_t KbScan(void);					//funkcja skanująca klawiature 4x1, zwraca numer klawisza
 uint8_t KbScan2(void);					//funkcja skanująca klawiature 4x4, zwraca numer klawisza
-void Licznik(void);						//funkcja filtrująca odczytane stany klawisza
+void Licznik(void);					//funkcja filtrująca odczytane stany klawisza
 void Licznik2(void);					//funkcja filtrująca odczytane stany klawisza,inkrementacja co 100ms,(nie testowane)
 void lcd_cursor_on(void);				//sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
 void lcd_cursor_off(void);				//sterowanie kursorem,do sprawdzenia,zbedne, przekleić funkcje do lcd_fuc.c,tu skasować
