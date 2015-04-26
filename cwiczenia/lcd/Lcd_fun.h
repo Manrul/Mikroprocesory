@@ -1,4 +1,4 @@
-//------------------------------------------------
+//------------------------------------------------http://www.elektroda.pl/rtvforum/topic1530839.html
 // Funkcje obslugi wyswietlacza tekstowego LCD
 // dotyczy ukladów zgodnych z opisem KS0066U
 //------------------------------------------------
