@@ -105,9 +105,9 @@ main(void)
     SoundInit();
     // WaveOpen((unsigned long *) sWaveClips[ulWaveIndex].pucWav, &sWaveHeader);
     //mozliwe ze trzeba przed kazdym odtworzeniem ;/
-    while(WaveOpen((unsigned long *)
-                                 sWaveClips[ulWaveIndex].pucWav,
-                                 &sWaveHeader) != WAVE_OK);//do zablokowania w razie bledu
+   // while(WaveOpen((unsigned long *)
+     //                            sWaveClips[ulWaveIndex].pucWav,
+       //                          &sWaveHeader) != WAVE_OK);//do zablokowania w razie bledu
     for(;;)
     {
 
@@ -146,18 +146,18 @@ main(void)
                          MotorStop((tSide)0);
                          MotorStop((tSide)1);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
-                //       losL =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie
-                //     	losH =40+ g_ulTickCount % 30;i dać los zamiast 60,mamy losowe skrecanie
-                         sterowanie(1,15,60);
+                	losL =10+ g_ulTickCount % 20;//i dać los zamiast 15,mamy losowe skrecanie(10-30)
+                     	losH =40+ g_ulTickCount % 30;//i dać los zamiast 60,mamy losowe skrecanie(40-70)
+                         sterowanie(1,losL,losH);
                 	 sMotorState = STATE_LEWY;
                     }
 
                     else if(bBumperIsPressed[1]){
                           MotorStop((tSide)0);
                           MotorStop((tSide)1);
-                //     	losL =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie
-                //     	losH =40+ g_ulTickCount % 30;i dać los zamiast 60,mamy losowe skrecanie
-                          sterowanie(1,60,15);
+                      	  losL =10+ g_ulTickCount % 20;//i dać los zamiast 15,mamy losowe skrecanie(10-30)
+                     	  losH =40+ g_ulTickCount % 30;//i dać los zamiast 60,mamy losowe skrecanie(40-70)
+                          sterowanie(1,losH,losL);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
                           sMotorState = STATE_PRAWY;
                           }
