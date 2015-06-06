@@ -131,6 +131,7 @@ main(void)
                          MotorStop((tSide)1);
                          //los = g_ulTickCount% 30;i dać los zamiast 15,mamy losowe skrecanie?
                          sterowanie(1,15,60);
+                //       WavePlayStart(&sWaveHeader); mozliwe ze tu
                          sMotorState = STATE_LEWY;
                     }
 
@@ -139,6 +140,7 @@ main(void)
                           MotorStop((tSide)1);
                            //los = g_ulTickCount% 30;i dać los zamiast 15,mamy losowe skrecanie?
                           sterowanie(1,60,15);
+                //       WavePlayStart(&sWaveHeader); mozliwe ze tu
                           sMotorState = STATE_PRAWY;
                           }
                     break;
@@ -146,7 +148,7 @@ main(void)
 
                case STATE_PRAWY:
                 {
-                	WavePlayStart(&sWaveHeader);
+                //	WavePlayStart(&sWaveHeader); nie wiem czy tu
                         while(cofanie<250);
                         MotorStop((tSide)0);
                         MotorStop((tSide)1);
@@ -158,7 +160,7 @@ main(void)
                 
                 case STATE_LEWY:
                 {
-                	WavePlayStart(&sWaveHeader);
+                //	WavePlayStart(&sWaveHeader); nie wiem czy tu
 			while(cofanie<250);
                 	MotorStop((tSide)0);
                       	MotorStop((tSide)1);
