@@ -64,7 +64,7 @@ main(void)
     unsigned long ulPHYMR0;
     tBoolean bButtonWasPressed = false;
     tMotorState sMotorState=STATE_STOPPED;
-
+    int los;
     
     ROM_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                        SYSCTL_XTAL_16MHZ);
@@ -122,6 +122,7 @@ main(void)
                     {
                          MotorStop((tSide)0);
                          MotorStop((tSide)1);
+                         //los = g_ulTickCount% 30;i dać los zamiast 15,mamy losowe skrecanie?
                          sterowanie(1,15,60);
                          sMotorState = STATE_LEWY;
                     }
@@ -129,6 +130,7 @@ main(void)
                     else if(bBumperIsPressed[1]){
                           MotorStop((tSide)0);
                           MotorStop((tSide)1);
+                           //los = g_ulTickCount% 30;i dać los zamiast 15,mamy losowe skrecanie?
                           sterowanie(1,60,15);
                           sMotorState = STATE_PRAWY;
                           }
