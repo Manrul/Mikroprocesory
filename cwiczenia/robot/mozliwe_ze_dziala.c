@@ -1,27 +1,3 @@
-//*****************************************************************************
-//
-// motor_demo.c - Example to run the EVALBOT motors
-//
-// Copyright (c) 2011-2012 Texas Instruments Incorporated.  All rights reserved.
-// Software License Agreement
-// 
-// Texas Instruments (TI) is supplying this software for use solely and
-// exclusively on TI's microcontroller products. The software is owned by
-// TI and/or its suppliers, and is protected under applicable copyright
-// laws. You may not combine this software with "viral" open-source
-// software in order to form a larger program.
-// 
-// THIS SOFTWARE IS PROVIDED "AS IS" AND WITH ALL FAULTS.
-// NO WARRANTIES, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT
-// NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. TI SHALL NOT, UNDER ANY
-// CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR CONSEQUENTIAL
-// DAMAGES, FOR ANY REASON WHATSOEVER.
-// 
-// This is part of revision 9453 of the Stellaris Firmware Development Package.
-//
-//*****************************************************************************
-
 #include "inc/hw_types.h"
 #include "inc/hw_memmap.h"
 #include "inc/hw_ethernet.h"
@@ -35,36 +11,6 @@
 #include "drivers/motor.h"
 #include "drivers/sensors.h"
 
-//*****************************************************************************
-//
-//! \addtogroup example_list
-//! <h1>Motor Demo (motor_demo)</h1>
-//!
-//! This example application demonstrates the use of the motors.  The buttons
-//! and bump sensors are used to start, stop, and reverse the motors.  It uses
-//! the system tick timer (SysTick) as a time reference for button debouncing
-//! and blinking LEDs.
-//!
-//! When this example is running, the display shows a message identifying the
-//! example.  The two user buttons on the right are used to control
-//! the motors.  The top button controls the left motor and the bottom button
-//! controls the right motor.  When a motor control button is pressed, the
-//! motor runs in the forward direction.  When the button is pressed a second
-//! time, the motor pauses.  Pressing the button a third time causes the motor
-//! to run in reverse.  This cycle can be repeated by continuing to press the
-//! button.
-//!
-//! When a motor is running, either forward or reverse, pressing the bump
-//! sensor pauses the motor.  When the bump sensor is released, the motor
-//! resumes running in the same direction.
-//
-//*****************************************************************************
-
-//*****************************************************************************
-//
-// Defines the possible states for the motor state machine.
-//
-//*****************************************************************************
 typedef enum
 {
     STATE_STOPPED,
@@ -73,18 +19,8 @@ typedef enum
     STATE_PRAWY
 } tMotorState;
 
-//*****************************************************************************
-//
-// Counter for the 10 ms system clock ticks.  Used for tracking time.
-//
-//*****************************************************************************
 static volatile unsigned long g_ulTickCount,cofanie;
 
-//*****************************************************************************
-//
-// The error routine that is called if the driver library encounters an error.
-//
-//*****************************************************************************
 #ifdef DEBUG
 void
 __error__(char *pcFilename, unsigned long ulLine)
@@ -95,34 +31,16 @@ __error__(char *pcFilename, unsigned long ulLine)
 }
 #endif
 
-//*****************************************************************************
-//
-// The interrupt handler for the SysTick timer.  This handler will increment a
-// tick counter to keep track of time, toggle the LEDs, and call the button
-// and bump sensor debouncers.
-//
-//*****************************************************************************
 void
 SysTickHandler(void)
 {
-    //
-    // Increment the tick counter.
-    //
     g_ulTickCount++;
     cofanie++;
 
-    //
-    // Every 100 ticks (1 second), toggle the LEDs
-    //
     if((g_ulTickCount % 100) == 0)
     {
         LED_Toggle(BOTH_LEDS);
     }
-
-    //
-    // Call the user button and bump sensor debouncing functions, which must
-    // be called periodically.
-    //
     PushButtonDebouncer();
     BumpSensorDebouncer();
 }
@@ -140,14 +58,6 @@ int sterowanie(tDirection kierunek,int pwmL,int pwmP)
 	 return 0;
 }
 
-
-
-//*****************************************************************************
-//
-// The main application.  It configures the board and then enters a loop
-// to process the button and sensor presses and run the motor.
-//
-//*****************************************************************************
 int
 main(void)
 {
@@ -155,15 +65,10 @@ main(void)
     tBoolean bButtonWasPressed = false;
     tMotorState sMotorState=STATE_STOPPED;
 
-    //
-    // Set the clocking to directly from the crystal
-    //
+    
     ROM_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                        SYSCTL_XTAL_16MHZ);
 
-    //
-    // Since the Ethernet is not used, power down the PHY to save battery.
-    //
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_ETH);
     ulPHYMR0 = ROM_EthernetPHYRead(ETH_BASE, PHY_MR0);
     ROM_EthernetPHYWrite(ETH_BASE, PHY_MR0, ulPHYMR0 | PHY_MR0_PWRDN);
@@ -185,45 +90,18 @@ main(void)
     LEDsInit();
     LED_On(LED_1);
 
-    //
-    // Initialize the buttons driver
-    //
     PushButtonsInit();
-
-    //
-    // Initialize the bump sensor driver
-    //
     BumpSensorsInit();
-
-    //
-    // Initialize the motor driver
-    //
     MotorsInit();
-
-    //
-    // Set up and enable the SysTick timer to use as a time reference.
-    // It will be set up for a 10 ms tick.
-    //
     ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / 100);
     ROM_SysTickEnable();
     ROM_SysTickIntEnable();
-
-    //
-    // Enter loop to run forever, processing button presses to make the
-    // motors run, pause, and stop.
-    //
     for(;;)
     {
 
-        //
-        // Process a state machine for each motor
-        //
-
+       
             tBoolean bButtonIsPressed;
             tBoolean bBumperIsPressed[2];
-
-            //
-            // Get the current button and bump sensor state for this motor
 
             bButtonIsPressed = !PushButtonGetDebounced((tButton)1);
             bBumperIsPressed[0] = !BumpSensorGetDebounced((tBumper)0);
@@ -296,10 +174,10 @@ main(void)
                     sMotorState = STATE_STOPPED;
                   break;
                 }
-            } // end switch
+            } 
 
            bButtonWasPressed = bButtonIsPressed;
 
-         // end for(ulMotor ...)
-    } // end for(;;)
+         
+    } 
 }
