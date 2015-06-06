@@ -143,7 +143,7 @@ main(void)
                          MotorStop((tSide)0);
                          MotorStop((tSide)1);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
-                         //los = g_ulTickCount% 30;i dać los zamiast 15,mamy losowe skrecanie?
+                         //los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
                          sterowanie(1,15,60);
                 	 sMotorState = STATE_LEWY;
                     }
@@ -151,7 +151,7 @@ main(void)
                     else if(bBumperIsPressed[1]){
                           MotorStop((tSide)0);
                           MotorStop((tSide)1);
-                           //los = g_ulTickCount% 30;i dać los zamiast 15,mamy losowe skrecanie?
+                           //los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
                           sterowanie(1,60,15);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
                           sMotorState = STATE_PRAWY;
