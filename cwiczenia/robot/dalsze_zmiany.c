@@ -104,6 +104,7 @@ main(void)
     ROM_SysTickIntEnable();
     SoundInit();
     // WaveOpen((unsigned long *) sWaveClips[ulWaveIndex].pucWav, &sWaveHeader);
+    //mozliwe ze trzeba przed kazdym odtworzeniem ;/
     while(WaveOpen((unsigned long *)
                                  sWaveClips[ulWaveIndex].pucWav,
                                  &sWaveHeader) != WAVE_OK);//do zablokowania w razie bledu
