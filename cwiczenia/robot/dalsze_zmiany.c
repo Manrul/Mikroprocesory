@@ -82,7 +82,7 @@ main(void)
     tMotorState sMotorState=STATE_STOPPED;
     tWaveHeader sWaveHeader;
     unsigned long ulWaveIndex = 1;
-    int los;
+    int losL,losH;
     
     ROM_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                        SYSCTL_XTAL_16MHZ);
@@ -146,7 +146,8 @@ main(void)
                          MotorStop((tSide)0);
                          MotorStop((tSide)1);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
-                //       los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
+                //       losL =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie
+                //     	losH =40+ g_ulTickCount % 30;i dać los zamiast 60,mamy losowe skrecanie
                          sterowanie(1,15,60);
                 	 sMotorState = STATE_LEWY;
                     }
@@ -154,7 +155,8 @@ main(void)
                     else if(bBumperIsPressed[1]){
                           MotorStop((tSide)0);
                           MotorStop((tSide)1);
-                //     	los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
+                //     	losL =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie
+                //     	losH =40+ g_ulTickCount % 30;i dać los zamiast 60,mamy losowe skrecanie
                           sterowanie(1,60,15);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
                           sMotorState = STATE_PRAWY;
