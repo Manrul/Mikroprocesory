@@ -103,8 +103,10 @@ main(void)
     ROM_SysTickEnable();
     ROM_SysTickIntEnable();
     SoundInit();
-    WaveOpen((unsigned long *) sWaveClips[ulWaveIndex].pucWav, &sWaveHeader);
-    
+    // WaveOpen((unsigned long *) sWaveClips[ulWaveIndex].pucWav, &sWaveHeader);
+    while(WaveOpen((unsigned long *)
+                                 sWaveClips[ulWaveIndex].pucWav,
+                                 &sWaveHeader) != WAVE_OK);//do zablokowania w razie bledu
     for(;;)
     {
 
@@ -143,7 +145,7 @@ main(void)
                          MotorStop((tSide)0);
                          MotorStop((tSide)1);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
-                         //los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
+                //       los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
                          sterowanie(1,15,60);
                 	 sMotorState = STATE_LEWY;
                     }
@@ -151,7 +153,7 @@ main(void)
                     else if(bBumperIsPressed[1]){
                           MotorStop((tSide)0);
                           MotorStop((tSide)1);
-                           //los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
+                //     	los =10+ g_ulTickCount % 20;i dać los zamiast 15,mamy losowe skrecanie?
                           sterowanie(1,60,15);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
                           sMotorState = STATE_PRAWY;
@@ -161,8 +163,7 @@ main(void)
 
                case STATE_PRAWY:
                 {
-                //	WavePlayStart(&sWaveHeader); nie wiem czy tu
-                        while(cofanie<250);
+                	 while(cofanie<250);
                         MotorStop((tSide)0);
                         MotorStop((tSide)1);
                         sterowanie(0,50,50);
@@ -173,8 +174,7 @@ main(void)
                 
                 case STATE_LEWY:
                 {
-                //	WavePlayStart(&sWaveHeader); nie wiem czy tu
-			while(cofanie<250);
+                	while(cofanie<250);
                 	MotorStop((tSide)0);
                       	MotorStop((tSide)1);
                       	sterowanie(0,50,50);
