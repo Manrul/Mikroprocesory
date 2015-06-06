@@ -262,7 +262,7 @@ main(void)
                     else if(bBumperIsPressed[1]){
                           MotorStop((tSide)0);
                           MotorStop((tSide)1);
-                          terowanie(1,60,15);
+                          sterowanie(1,60,15);
                           sMotorState = STATE_PRAWY;
                           }
                     break;
@@ -281,12 +281,12 @@ main(void)
                 case STATE_LEWY:
                                {
 					
-                      while(cofanie<250);
-                      MotorStop((tSide)0);
-                      MotorStop((tSide)1);
-                      sterowanie(0,50,50);
-                       sMotorState = STATE_RUNNING;
-                            break;
+                	while(cofanie<250);
+                	MotorStop((tSide)0);
+                      	MotorStop((tSide)1);
+                      	sterowanie(0,50,50);
+                      	sMotorState = STATE_RUNNING;
+                        break;
                                }
 
                default:
