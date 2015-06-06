@@ -147,16 +147,16 @@ main(void)
 
                     break;
                 }
+                
                 case STATE_LEWY:
-                               {
-					
-                	while(cofanie<250);
+                {
+			while(cofanie<250);
                 	MotorStop((tSide)0);
                       	MotorStop((tSide)1);
                       	sterowanie(0,50,50);
                       	sMotorState = STATE_RUNNING;
-                        break;
-                               }
+                     break;
+                }
 
                default:
                 {
