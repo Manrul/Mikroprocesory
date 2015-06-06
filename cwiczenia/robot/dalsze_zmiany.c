@@ -10,6 +10,7 @@
 #include "drivers/io.h"
 #include "drivers/motor.h"
 #include "drivers/sensors.h"
+#include "driverlib/udma.h"
 #include "drivers/sound.h"
 #include "drivers/wav.h"
 #include "sounds.h"
@@ -33,6 +34,17 @@ __error__(char *pcFilename, unsigned long ulLine)
     }
 }
 #endif
+
+#ifdef ewarm
+#pragma data_alignment=1024
+tDMAControlTable sDMAControlTable[64];
+#elif defined(ccs)
+#pragma DATA_ALIGN(sDMAControlTable, 1024)
+tDMAControlTable sDMAControlTable[64];
+#else
+tDMAControlTable sDMAControlTable[64] __attribute__ ((aligned(1024)));
+#endif
+
 
 void
 SysTickHandler(void)
