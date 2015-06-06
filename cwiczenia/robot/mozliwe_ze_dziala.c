@@ -68,34 +68,23 @@ main(void)
     
     ROM_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
                        SYSCTL_XTAL_16MHZ);
-
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_ETH);
     ulPHYMR0 = ROM_EthernetPHYRead(ETH_BASE, PHY_MR0);
     ROM_EthernetPHYWrite(ETH_BASE, PHY_MR0, ulPHYMR0 | PHY_MR0_PWRDN);
 
-    //
-    // Initialize the board display
-    //
-   // Display96x16x1Init(true);
+	         	 // Display96x16x1Init(true);
+	        	//  Display96x16x1StringDraw("MOTOR", 29, 0);
+	         	 //  Display96x16x1StringDraw("DEMO", 31, 1);
 
-    //
-    // Print a simple message to the display
-    //
-  //  Display96x16x1StringDraw("MOTOR", 29, 0);
-  //  Display96x16x1StringDraw("DEMO", 31, 1);
-
-    //
-    // Initialize the LED driver, then turn one LED on
-    //
     LEDsInit();
     LED_On(LED_1);
-
     PushButtonsInit();
     BumpSensorsInit();
     MotorsInit();
     ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / 100);
     ROM_SysTickEnable();
     ROM_SysTickIntEnable();
+    
     for(;;)
     {
 
