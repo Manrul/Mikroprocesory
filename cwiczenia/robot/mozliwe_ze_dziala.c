@@ -10,7 +10,7 @@
 #include "drivers/io.h"
 #include "drivers/motor.h"
 #include "drivers/sensors.h"
-
+//http://wklej.org/id/1730828/
 typedef enum
 {
     STATE_STOPPED,
