@@ -10,7 +10,10 @@
 #include "drivers/io.h"
 #include "drivers/motor.h"
 #include "drivers/sensors.h"
-
+#include "drivers/sound.h"
+#include "drivers/wav.h"
+#include "sounds.h"
+//https://github.com/hrshygoodness/Luminary-Micro-Library/blob/master/boards/ek-evalbot/sound_demo/sound_demo.c
 typedef enum
 {
     STATE_STOPPED,
@@ -64,6 +67,8 @@ main(void)
     unsigned long ulPHYMR0;
     tBoolean bButtonWasPressed = false;
     tMotorState sMotorState=STATE_STOPPED;
+    tWaveHeader sWaveHeader;
+    unsigned long ulWaveIndex = 1;
     int los;
     
     ROM_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |
@@ -84,6 +89,8 @@ main(void)
     ROM_SysTickPeriodSet(ROM_SysCtlClockGet() / 100);
     ROM_SysTickEnable();
     ROM_SysTickIntEnable();
+    SoundInit();
+    WaveOpen((unsigned long *) sWaveClips[ulWaveIndex].pucWav, &sWaveHeader);
     
     for(;;)
     {
@@ -139,6 +146,7 @@ main(void)
 
                case STATE_PRAWY:
                 {
+                	WavePlayStart(&sWaveHeader);
                         while(cofanie<250);
                         MotorStop((tSide)0);
                         MotorStop((tSide)1);
@@ -150,6 +158,7 @@ main(void)
                 
                 case STATE_LEWY:
                 {
+                	WavePlayStart(&sWaveHeader);
 			while(cofanie<250);
                 	MotorStop((tSide)0);
                       	MotorStop((tSide)1);
