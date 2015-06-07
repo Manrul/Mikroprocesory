@@ -15,7 +15,8 @@
 #include "drivers/wav.h"
 #include "sounds.h"
 //https://github.com/hrshygoodness/Luminary-Micro-Library/blob/master/boards/ek-evalbot/sound_demo/sound_demo.c
-//http://wklej.org/id/1730826/
+//http://wklej.org/id/1731827/
+//http://www68.zippyshare.com/v/obaaYPKA/file.html
 typedef enum
 {
     STATE_STOPPED,
