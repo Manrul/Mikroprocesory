@@ -21,8 +21,7 @@ typedef enum
 {
     STATE_STOPPED,
     STATE_RUNNING,
-    STATE_LEWY,
-    STATE_PRAWY
+    STATE_TYL
 } tMotorState;
 
 static volatile unsigned long g_ulTickCount,cofanie;
@@ -150,7 +149,7 @@ main(void)
                 	losL =10+ g_ulTickCount % 20;//i dać los zamiast 15,mamy losowe skrecanie(10-30)
                      	losH =40+ g_ulTickCount % 30;//i dać los zamiast 60,mamy losowe skrecanie(40-70)
                          sterowanie(1,losL,losH);
-                	 sMotorState = STATE_LEWY;
+                	 sMotorState = STATE_TYL;
                     }
 
                     else if(bBumperIsPressed[1]){
@@ -160,12 +159,12 @@ main(void)
                      	  losH =40+ g_ulTickCount % 30;//i dać los zamiast 60,mamy losowe skrecanie(40-70)
                           sterowanie(1,losH,losL);
                 //       WavePlayStart(&sWaveHeader); mozliwe ze tu
-                          sMotorState = STATE_PRAWY;
+                          sMotorState = STATE_TYL;
                           }
                     break;
                 }
 
-               case STATE_PRAWY:
+               case STATE_TYL:
                 {
                 	 while(cofanie<250);
                         MotorStop((tSide)0);
@@ -176,16 +175,6 @@ main(void)
                     break;
                 }
                 
-                case STATE_LEWY:
-                {
-                	while(cofanie<250);
-                	MotorStop((tSide)0);
-                      	MotorStop((tSide)1);
-                      	sterowanie(0,50,50);
-                      	sMotorState = STATE_RUNNING;
-                     break;
-                }
-
                default:
                 {
                     MotorStop((tSide)1);
