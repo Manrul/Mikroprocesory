@@ -165,7 +165,7 @@ main(void)
                 }
 
                case STATE_TYL:
-                {
+                {//cofanie tez moze byc losowe np losH+losL(50-100)+160=(210-260)
                 	 while(cofanie<250);
                         MotorStop((tSide)0);
                         MotorStop((tSide)1);
