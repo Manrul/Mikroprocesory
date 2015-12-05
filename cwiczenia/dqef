@@ -1,4 +1,7 @@
-Chciałbym, żeby moduł główny miał wymiary 130mm x 60mm, chyba że będzie problem z rozmieszczeniem wszystkiego, wtedy może być nieco większy z zachowaniem proporcji, fajnie jakbyś tak ściął od przodu jak ten koleś co robił mi pierwszą wersje, widziałeś.
+Chciałbym, żeby moduł główny miał wymiary 130mm x 60mm, chyba że będzie problem z rozmieszczeniem wszystkiego, 
+wtedy może być nieco większy z zachowaniem proporcji, 
+fajnie jakbyś tak ściął riogi od przodu jak ten koleś, co robił mi pierwszą wersje, widziałeś.
+
 -Silniki mniej więcej jak tu, dałem Ci ich bibliotekę, żebyć widział ile zajmują(ta wersja z długim mocowaniem)
 http://www.forbot.pl/forum/upload_img/obrazki/IMG_53661f3409dea3762.jpg
 
@@ -10,8 +13,12 @@ http://www.forbot.pl/forum/upload_img/obrazki/IMG_53623b6a921041709.png  to też
 -Procesor najlepiej po środku pomiędzy tymi otworami w równej odległości od silników coś jak tu
 http://www.forbot.pl/forum/upload_img/obrazki/IMG_55b2151bd3859880.jpg
 
-Te złącze od czujników, z przodu na górnej warstwie.
-Wiadomo guzik i ten przełącznik od zasilnia, wtyczka od baterii i wtyczki od silników, też na górze, 
+Te złącze od czujników, z przodu na górnej warstwie,to dosc wazne.
+Wiadomo guzik  też na górze, 
+ ten przełącznik od zasilnia, wtyczka od baterii i wtyczki od silników, też niby na górze, 
+ ale jak to praktycznie na goldpinach jest to chyba nawet nie  różniczy czy na topie czy bottomie?
 mostek h i cała reszta obojętnie czy top czy bottom
+no  i wiadomo  kwarc jak najbliżej wyjsc mikrokontrolera, na górnej warstwie, bo za wysoki żeby być na dole, procesor za to może być na 
+dole jak Ci bedzie wygodnie/ 
 
 Co do tego przełącznika przy zasilaniu to on chyba będzie dobry? bo nie wiem co to za strzałka przy nim,bo wyjścia ma dobre.
