@@ -1,0 +1,16 @@
+Chciałbym, żeby moduł główny miał wymiary 130mm x 60mm, chyba że będzie problem z rozmieszczeniem wszystkiego, wtedy może być nieco większy z zachowaniem proporcji, fajnie jakbyś tak ściął od przodu jak ten koleś co robił mi pierwszą wersje, widziałeś.
+-Silniki mniej więcej jak tu, dałem Ci ich bibliotekę, żebyć widział ile zajmują(ta wersja z długim mocowaniem)
+http://www.forbot.pl/forum/upload_img/obrazki/IMG_53661f3409dea3762.jpg
+
+-W przedniej i tylnej części płytki dokładnie w środku  2 otwory na śruby tak jak jest to tutaj, o średnicy ~3mm,
+http://www.forbot.pl/forum/upload_img/obrazki/IMG_53623b6a921041709.png  to też możesz zobaczyć jak ten koleś zrobił bo był spoko.
+
+-Diody mogą być wszystkie obok siebie ustawione, albo parami, po dwóch stronach mikrokontrolera, to jak Ci wygodnie
+
+-Procesor najlepiej po środku pomiędzy tymi otworami w równej odległości od silników coś jak tu
+http://www.forbot.pl/forum/upload_img/obrazki/IMG_55b2151bd3859880.jpg
+
+Te złącze od czujników, z przodu na górnej warstwie.
+Wiadomo guzik i ten przełącznik od zasilnia, wtyczka od baterii i wtyczki od silników, też na górze, mostek h i cała reszta obojętnie czy top czy bottom
+
+Co do tego przełącznika przy zasilaniu to on chyba będzie dobry? bo nie wiem co to za strzałka przy nim,bo wyjścia ma dobre.
