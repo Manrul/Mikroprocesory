@@ -4,7 +4,7 @@ wtedy może być nieco większa z zachowaniem proporcji,
  Tutaj masz moj pomysl rozmieszczenia jakbym to widzial, oczywiscie mozesz to zrobic inaczej.
  -------------------------------------------------------------------------------------------
   Jak widać w rogach sa silniki, ktorych biblioteke moge Ci dac i ich pozycja nie powinna byc inna(tylni rog plytki),
-  Mikrokontroler moze byc wzdluz plytki, ale wtedy tak przez srodek, zeby nie byl zbytblisko silnikow, albo wszerz, 
+  Mikrokontroler moze byc wzdluz plytki, ale wtedy tak przez srodek, zeby nie byl zbyt blisko silnikow, albo wszerz, 
   ale wtedy powinnien byc bardziej z przodu jak ja to zrobilem.
   Z przodu masz zlacze FFC/FPC ZIF no i ono tez tak powinno byc umieszczone, czyli sam przod, po srodku na warstwie top,
   a po bokach mniej wiecej  na równi ze zlaczem  odtwory montazowe.
@@ -18,6 +18,6 @@ wtedy może być nieco większa z zachowaniem proporcji,
   chyba ze nie bedzie szlo inaczej ogolnie  im mniej przelotek tym lepiej.
   
   I jeszcze jedno, wyyprowadzenia od sterowania mostkiem(A_IN2,1,b_in1,2) możesz zamienić kolejnoscia,
-  jesli wtedy bedzie wygodniej prowadzic sciezki tak samo wysiac wy1,wy2,wy3,wy4,
+  jesli wtedy bedzie wygodniej prowadzic sciezki tak samo wyjscia wy1,wy2,wy3,wy4,
   a diody d1,d2 i przycisk mozesz tez zamienic kolejnosc, lub podlaczyc do jakiegos nie uzywanego wyjscia mikrokontrolera
   jesli to ulatwi prace.
