@@ -16,3 +16,8 @@ wtedy może być nieco większa z zachowaniem proporcji,
   czy rezonator ze swoimi kondensatorami jak najblizej odpowiednich wyprowadzen,
   sam mostek H moze byc na warstwie bottom, jak Ci wygodnie, tylko dobrze by bylo jakby podnim nie bylo przelotek,
   chyba ze nie bedzie szlo inaczej ogolnie  im mniej przelotek tym lepiej.
+  
+  I jeszcze jedno, wyyprowadzenia od sterowania mostkiem(A_IN2,1,b_in1,2) możesz zamienić kolejnoscia,
+  jesli wtedy bedzie wygodniej prowadzic sciezki tak samo wysiac wy1,wy2,wy3,wy4,
+  a diody d1,d2 i przycisk mozesz tez zamienic kolejnosc, lub podlaczyc do jakiegos nie uzywanego wyjscia mikrokontrolera
+  jesli to ulatwi prace.
