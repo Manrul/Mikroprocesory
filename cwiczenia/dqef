@@ -1,24 +1,18 @@
-Chciałbym, żeby moduł główny miał wymiary 130mm x 60mm, chyba że będzie problem z rozmieszczeniem wszystkiego, 
-wtedy może być nieco większy z zachowaniem proporcji, 
-fajnie jakbyś tak ściął riogi od przodu jak ten koleś, co robił mi pierwszą wersje, widziałeś.
-
--Silniki mniej więcej jak tu, dałem Ci ich bibliotekę, żebyć widział ile zajmują(ta wersja z długim mocowaniem)
-http://www.forbot.pl/forum/upload_img/obrazki/IMG_53661f3409dea3762.jpg
-
--W przedniej i tylnej części płytki dokładnie w środku  2 otwory na śruby tak jak jest to tutaj, o średnicy ~3mm,
-http://www.forbot.pl/forum/upload_img/obrazki/IMG_53623b6a921041709.png  to też możesz zobaczyć jak ten koleś zrobił bo było spoko.
-
--Diody mogą być wszystkie obok siebie ustawione, albo parami, po dwóch stronach mikrokontrolera, to jak Ci wygodnie
-
--Procesor najlepiej po środku pomiędzy tymi otworami w równej odległości od silników coś jak tu
-http://www.forbot.pl/forum/upload_img/obrazki/IMG_55b2151bd3859880.jpg
-
-Te złącze od czujników, z przodu na górnej warstwie,to dosc wazne.
-Wiadomo guzik  też na górze, 
- ten przełącznik od zasilnia, wtyczka od baterii i wtyczki od silników, też niby na górze, 
- ale jak to praktycznie na goldpinach jest to chyba nawet nie  różniczy czy na topie czy bottomie?
-mostek h i cała reszta obojętnie czy top czy bottom
-no  i wiadomo  kwarc jak najbliżej wyjsc mikrokontrolera, na górnej warstwie, bo za wysoki żeby być na dole, procesor za to może być na 
-dole jak Ci bedzie wygodnie/ 
-
-Co do tego przełącznika przy zasilaniu to on chyba będzie dobry? bo nie wiem co to za strzałka przy nim,bo wyjścia ma dobre.
+Chciałbym, żeby pytka miala wymiary 130mm x 60mm, chyba że będzie problem z rozmieszczeniem wszystkiego, 
+wtedy może być nieco większa z zachowaniem proporcji, 
+ może być też tak, że "tyl" ma te 130 mm, a sama plytka sie zweza wtedy moze byc dluzsza ~80mm
+ Tutaj masz moj pomysl rozmieszczenia jakbym to widzial, oczywiscie mozesz to zrobic inaczej.
+ -------------------------------------------------------------------------------------------
+  Jak widać w rogach sa silniki, ktorych biblioteke moge Ci dac i ich pozycja nie powinna byc inna(tylni rog plytki),
+  Mikrokontroler moze byc wzdluz plytki, ale wtedy tak przez srodek, zeby nie byl zbytblisko silnikow, albo wszerz, 
+  ale wtedy powinnien byc bardziej z przodu jak ja to zrobilem.
+  Z przodu masz zlacze FFC/FPC ZIF no i ono tez tak powinno byc umieszczone, czyli sam przod, po srodku na warstwie top,
+  a po bokach mniej wiecej  na równi ze zlaczem  odtwory montazowe.
+  Zlacza silnika najlepiej gdzies w okolicy silnikow, zlacze do UART,dioda ir  i zlacze programatora gdzies na uboczu,
+  tak zeby bylo Ci wygodnie,JP1(wtyczka baterii) najlepiej blisko przelacznika i kondensatorow filtrujacych zasilanie
+  diody i guzik nie ma wiekszego znaczenia gdzie beda, 
+  tylko waznie zeby byly na warstwie top, reszta juz bez wiekszego znaczenia, 
+  wiadomo kondensatory filtrujace zasilanie mikrokontrolera, dlawik 
+  czy rezonator ze swoimi kondensatorami jak najblizej odpowiednich wyprowadzen,
+  sam mostek H moze byc na warstwie bottom, jak Ci wygodnie, tylko dobrze by bylo jakby podnim nie bylo przelotek,
+  chyba ze nie bedzie szlo inaczej ogolnie  im mniej przelotek tym lepiej.
