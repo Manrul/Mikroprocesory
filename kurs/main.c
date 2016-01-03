@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
-//#define F_CPU 16000000UL
+#define F_CPU 16000000UL
 #include <util/delay.h>
 #include <stdio.h>				//do sprintf
 #include <stdlib.h>
@@ -26,30 +26,31 @@ int main(void)
 	diody_20=2;
 	diody_21=3;
 	diody_22=4;
+	//wyjscia wyswietlacza
+	lcd_rs_dir=1;
+	lcd_e_dir=1;
+	lcd_data_dir=15;
+	//led_dir=255;//chyba zanegowac
+	//klawisze
+	keyh_dir=0;
+	keyh_port=15;
 
 	menu_ptr=&M0;
-
-
 
 	//ustawienie adc
 	ADMUX = (1<<REFS0)|(1<<ADLAR);
 	ADCSRA = (1<<ADEN)|(1<<ADSC)|(1<<ADATE)|(1<<ADPS2)|(1<<ADPS1)|(1<ADPS1);
-
-	OCR0=199;					//konfiguracja timera
+	//ustawienia timera
+	OCR0=199;
 	TCCR0|=1<<CS01|1<<WGM01;
 	TIMSK|=1<<OCIE0;
 	sei();
 
 
-	lcd_rs_dir=1;
-	lcd_e_dir=1;
-	lcd_data_dir=15;
-
-	led_dir=255;
-	keyh_dir=0;
-	keyh_port=15;
-
-	lcd_buff=malloc(80);	//80 bajtów przydzielonej pamięci (z biblioteki stdlib) na nasz bufor
+	//80 bajtów przydzielonej pamięci (z biblioteki stdlib) na nasz bufor
+	lcd_buff=malloc(80);
+	//inicjalizacja wyswietlacza
+	sprintf(lcd_buff,"\004\377\001\x28\004\377\001\x0C\004\377\001\x06\004\377\001\x01\004\377MTM");
 	lcd_buff_full=1;		//koniec uzupełniania bufora-->można wypisać
 	while(lcd_buff_full);
 	key=255;
@@ -152,7 +153,6 @@ ISR(TIMER0_COMP_vect)
 				lcd_write_data(*(lcd_buff+lcd_index));
 				lcd_index++;
 		}
-
 	}
 	if(lcd_cnt>0)
 		lcd_cnt--;
@@ -182,18 +182,12 @@ ISR(TIMER0_COMP_vect)
 				break;
 		}
 	}
-
 	if(key_cnt>0)
 		key_cnt--;
-
-
 }
-
-
 
 void M0af(char n)
 {
-
 	static struct diody_2 diody012;
 	static int tmp=0;
 
@@ -312,7 +306,6 @@ void M0bf(char n)
 						key=255;
 					break;
 				}
-
 			if(key!=255)
 			{
 				sprintf(lcd_buff,"\001\x0C\004\020\001\x80\004\020Kanal:01234567\004\020\001\x0F\004\020",(kanal-1)+7+0x80);
