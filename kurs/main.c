@@ -1,6 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#define F_CPU 16000000UL
+//#define F_CPU 16000000UL
 #include <util/delay.h>
 #include <stdio.h>				//do sprintf
 #include <stdlib.h>
@@ -50,36 +50,27 @@ int main(void)
 	keyh_port=15;
 
 	lcd_buff=malloc(80);	//80 bajtów przydzielonej pamięci (z biblioteki stdlib) na nasz bufor
-	/*int n;					//zmienna zwracająca ilość bajtów wpisywaną do sprintf
-	n=sprintf(lcd_buff,"\004\377\001\x28\004\377\001\x0C\004\377\001\x06\004\377\001\x01\004\377MTM");//inicjalizacja lcd (liczby zapisywane ok
-	sprintf(lcd_buff+n,"%03d",n);*/
-
 	lcd_buff_full=1;		//koniec uzupełniania bufora-->można wypisać
-
 	while(lcd_buff_full);
-
 	key=255;
-
 	while(1)
 	{
 		if(lcd_buff_full==1) continue;
-
 		if(menu_local!=0)
 			if(runme !=0)
 			{
 				(*(menu_ptr->function))(2);
 				runme=0;
 			}
-			else (*(menu_ptr->function))(0);
+			else
+				(*(menu_ptr->function))(0);
 		else
-
-		if(key!=0)
-		{
+			if(key!=0)
+			{
 			switch(key)
 			{
 				case 1: // down/ENTER
 					if(menu_ptr->down!=NULL)
-
 						menu_ptr=menu_ptr->down;
 					else if(menu_ptr->function!=NULL)
 						{
@@ -87,24 +78,22 @@ int main(void)
 							menu_local=1;
 							key=254;
 						}
-				break;
+					break;
 
 				case 2: //right
 					if(menu_ptr->right!=NULL)
 						menu_ptr=menu_ptr->right;
-				break;
-
+					break;
 				case 4:	//left
 					if(menu_ptr->left!=NULL)
 						menu_ptr=menu_ptr->left;
-				break;
-
+					break;
 				case 8:	//up/esc
 					if(menu_ptr->up!=NULL)
 						menu_ptr=menu_ptr->up;
-				break;
-			default:
-				break;
+					break;
+				default:
+					break;
 			}
 			if(key!=254)
 			{
@@ -114,7 +103,6 @@ int main(void)
 			}
 		}
 	}
-
 	return 0;
 }
 
