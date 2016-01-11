@@ -129,7 +129,7 @@ void omin_lewo(void){
 		pomiar(2);
 		_delay_ms(6);
 	}
-	while(tab[2]>poziom);
+	while(tab[2]<poziom);
 	sp_stop();
 	sl_stop();
 }
@@ -141,7 +141,7 @@ void omin_prawo(void){
 		pomiar(2);
 		_delay_ms(6);
 	}
-	while(tab[2]>poziom);
+	while(tab[2]<poziom);
 	sp_stop();
 	sl_stop();
 }
@@ -159,7 +159,7 @@ void omin_uciekaj(void){
 		pomiar(2);
 		_delay_ms(6);
 	}
-	while(tab[2]>poziom);
+	while(tab[2]<poziom);
 	sp_stop();
 	sl_stop();
 }
