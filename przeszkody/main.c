@@ -26,10 +26,12 @@ ISR(TIMER2_COMP_vect){
 		PORTD&=~(1<<PD7);
 	if(licznik<199){
 		licznik++;
+		}
+	else
+	{
+		licznik=0;
 		PORTD|=(1<<PD7);
 	}
-	else
-		licznik=0;
 }
 void init_pin(void){
 	DDRD|=(1<<PD1)|(1<<PD2)|(1<<PD3)|(1<<PD4)|(1<<PD6)|(1<<PD7);
