@@ -13,18 +13,11 @@ uint8_t tab[5]={0,0,0,0,0};
 uint8_t dir[5]={skos_l,prosto,skos_p,lewo,prawo};
 
 int main(void){
-	DDRD|=(1<<PD1)|(1<<PD2)|(1<<PD3)|(1<<PD4)|(1<<PD6)|(1<<PD7);
-	DDRD&=~(1<<PD0);
-	PORTD|=(1<<PD0);
-	init_adc();
-	init_timer0();
-	init_timer1();
-	init_timer2();
+	start();
 	while(guzik);
 	PORTD|=(1<<PD1);
 	_delay_ms(500);
 	regulator();
-	while(1);
 	return 0;
 }
 ISR(TIMER2_COMP_vect){
@@ -38,24 +31,35 @@ ISR(TIMER2_COMP_vect){
 	else
 		licznik=0;
 }
-
+void init_pin(void){
+	DDRD|=(1<<PD1)|(1<<PD2)|(1<<PD3)|(1<<PD4)|(1<<PD6)|(1<<PD7);
+	DDRD&=~(1<<PD0);
+	PORTD|=(1<<PD0);
+}
 void init_adc(void){
 	ADMUX|=(1<<REFS0)|(1<ADLAR);
 	ADCSRA|=(1<<ADEN)|(1<<ADPS2)|(1<<ADPS1);
 }
 void init_timer0(void){
 	 TCCR0|=(1<<WGM01)|(1<<WGM00)|(1<<COM01)|(1<<CS00);
-	 OCR0=100;
+	 OCR0=predkosc;
 }
 void init_timer1(void){
 	 TCCR1A |=(1<<COM1A1)|(1<<WGM10);
 	 TCCR1B |=(1<<WGM12)|(1<<CS10);
-	 OCR1A=100;
+	 OCR1A=predkosc;
 }
 void init_timer2(void){
 	 TCCR2|=(1<<WGM21)|(1<<CS21);
 	 OCR2=100;
 	 TIMSK|=(1<< OCIE2);
+}
+void start(void){
+	init_pin();
+	init_adc();
+	init_timer0();
+	init_timer1();
+	init_timer2();
 }
 void sl_przod(void){
 	PORTD|=(1<<PD6);
