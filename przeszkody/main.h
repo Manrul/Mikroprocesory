@@ -20,8 +20,12 @@
 #define skos_l 18
 #define skos_p 8
 
+#define predkosc 150
+
 #define poziom 200
 
+void start(void);
+void init_pin(void);
 void init_adc(void);
 void init_timer0(void);
 void init_timer1(void);
