@@ -97,7 +97,7 @@ void regulator(void){
 		sp_przod();
 		for(i=0;i<3;i++){
 			serwo=dir[i];
-			_delay_ms(6);
+			_delay_ms(czas_pomiaru);
 			pomiar(i);
 		}
 		if(tab[0]>poziom||tab[1]>poziom||tab[2]>poziom){
@@ -109,10 +109,10 @@ void regulator(void){
 }
 void przeszkoda(void){
 	serwo=dir[3];
-	_delay_ms(6);
+	_delay_ms(czas_pomiaru);
 	pomiar(3);
 	serwo=dir[4];
-	_delay_ms(6);
+	_delay_ms(czas_pomiaru);
 	pomiar(4);
 	if(tab[3]<poziom)
 		omin_lewo();
@@ -127,7 +127,7 @@ void omin_lewo(void){
 	serwo=dir[2];
 	do{
 		pomiar(2);
-		_delay_ms(6);
+		_delay_ms(czas_pomiaru);
 	}
 	while(tab[2]<poziom);
 	sp_stop();
@@ -139,7 +139,7 @@ void omin_prawo(void){
 	serwo=dir[2];
 	do {
 		pomiar(2);
-		_delay_ms(6);
+		_delay_ms(czas_pomiaru);
 	}
 	while(tab[2]<poziom);
 	sp_stop();
@@ -149,7 +149,7 @@ void omin_uciekaj(void){
 	sl_tyl();
 	sp_tyl();
 	serwo=dir[2];
-	_delay_ms(200);
+	_delay_ms(uciekaj);
 	sp_stop();
 	sl_stop();
 	_delay_ms(20);
@@ -157,7 +157,7 @@ void omin_uciekaj(void){
 	sp_tyl();
 	do {
 		pomiar(2);
-		_delay_ms(6);
+		_delay_ms(czas_pomiaru);
 	}
 	while(tab[2]<poziom);
 	sp_stop();
