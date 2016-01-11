@@ -14,15 +14,16 @@
 
 #define guzik (PIND & 0x01)
 
-#define prosto 13
-#define lewo  22
-#define prawo 4
-#define skos_l 18
-#define skos_p 8
+#define prosto 13		//czujnik "patrzy" prosto
+#define lewo  22		//czujnik "patrzy w lewo
+#define prawo 4			//czujnik "patrzy" w prawo
+#define skos_l 18		//czujnik "patrzy" lekkow w lewo
+#define skos_p 8		//czujnik "patrzy" lekko w prawo
+#define predkosc 150	 //predkosc jazdy
+#define poziom 200  	//prog wykrywania przeszkody
+#define czas_pomiaru 6	//czas na ustabilizowanie sie pomiaru
+#define uciekaj 300		//jak dlugo ma sie cofac
 
-#define predkosc 150
-
-#define poziom 200
 
 void start(void);
 void init_pin(void);
