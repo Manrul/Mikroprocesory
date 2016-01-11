@@ -124,7 +124,7 @@ void przeszkoda(void){
 void omin_lewo(void){
 	sp_przod();
 	sl_tyl();
-	serwo=dir[2];
+	serwo=dir[1];
 	do{
 		pomiar(2);
 		_delay_ms(czas_pomiaru);
@@ -136,7 +136,7 @@ void omin_lewo(void){
 void omin_prawo(void){
 	sl_przod();
 	sp_tyl();
-	serwo=dir[2];
+	serwo=dir[1];
 	do {
 		pomiar(2);
 		_delay_ms(czas_pomiaru);
@@ -148,7 +148,7 @@ void omin_prawo(void){
 void omin_uciekaj(void){
 	sl_tyl();
 	sp_tyl();
-	serwo=dir[2];
+	serwo=dir[1];
 	_delay_ms(uciekaj);
 	sp_stop();
 	sl_stop();
